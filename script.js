@@ -8,7 +8,7 @@ document.getElementById('search-btn').addEventListener('click', function() {
 });
 
 function getWeatherData(city) {
-    const apiKey = 'YOUR_API_KEY';  // Replace with your OpenWeatherMap API key
+    const apiKey = '5922e83ebdfc47f0fe712ff2f744bcec';  //OpenWeatherMap API key
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     fetch(url)
