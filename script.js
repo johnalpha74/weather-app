@@ -8,16 +8,22 @@ document.getElementById('search-btn').addEventListener('click', function() {
 });
 
 function getWeatherData(city) {
-    const apiKey = '5922e83ebdfc47f0fe712ff2f744bcec';  //OpenWeatherMap API key
+    const apiKey = '5922e83ebdfc47f0fe712ff2f744bcec';  // Your provided OpenWeatherMap API key
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             displayWeatherData(data);
         })
         .catch(error => {
             console.error('Error fetching the weather data:', error);
+            alert('Error fetching the weather data. Please try again.');
         });
 }
 
@@ -36,3 +42,4 @@ function displayWeatherData(data) {
         output.innerHTML = `<p>${data.message}</p>`;
     }
 }
+
